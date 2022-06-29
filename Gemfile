@@ -48,4 +48,8 @@ group :development do
 end
 
 gem 'http'
-gem 'rspec'
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'rspec'
+end
