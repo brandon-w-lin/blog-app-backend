@@ -10,6 +10,8 @@ class PostsController < ApplicationController
 
   # GET /posts/1
   def show
+    @post.views += 1
+    @post.save
     render json: @post
   end
 
@@ -39,13 +41,14 @@ class PostsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def post_params
-      params.require(:post).permit(:title, :body, :user_id, :views, :submitted_date, :updated_date)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def post_params
+    params.require(:post).permit(:title, :body, :user_id, :views, :submitted_date, :updated_date)
+  end
 end
