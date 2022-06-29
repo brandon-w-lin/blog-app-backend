@@ -1,0 +1,12 @@
+@posts.map do |post|
+  {
+    id: post.id,
+    title: post.title,
+    body: post.body,
+    user_id: post.user_id,
+    views: post.views,
+    submitted_date: post.submitted_date,
+    updated_date: post.updated_date,
+    url: post_url(post, format: :json)
+  }
+end
