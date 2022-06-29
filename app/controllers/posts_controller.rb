@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show update destroy ]
+  include PostsHelper
 
   # GET /posts
   def index
@@ -18,6 +19,7 @@ class PostsController < ApplicationController
   # POST /posts
   def create
     @post = Post.new(post_params)
+    @post.user = assign_post_creator(@post, current_user)
 
     if @post.save
       render json: @post, status: :created, location: @post
